@@ -86,6 +86,71 @@
         color: var(--muted);
       }
 
+      .evaluation {
+        margin-top: 18px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 16px 18px;
+      }
+
+      .hero-title {
+        margin: 28px 0 18px;
+        text-align: center;
+      }
+
+      .hero-title h2 {
+        margin: 0;
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        background: linear-gradient(90deg, #7aa7ff 0%, #c8a3ff 45%, #ffb59a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 12px 30px rgba(122, 167, 255, 0.25);
+      }
+
+      .evaluation h2 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .evaluation p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .evaluation-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+
+      .evaluation-item {
+        background: var(--card-soft);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .evaluation-item strong {
+        display: block;
+        font-size: 13px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .evaluation-item span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+
       .thumbs {
         margin-top: 28px;
         display: grid;
@@ -153,25 +218,28 @@
       .metrics {
         display: grid;
         grid-auto-flow: column;
-        gap: 12px;
+        gap: 16px;
       }
 
       .metric-card {
-        background: var(--card);
-        border: 1px solid var(--border);
+        background: linear-gradient(145deg, rgba(122, 167, 255, 0.18), rgba(18, 22, 33, 0.9));
+        border: 1px solid rgba(122, 167, 255, 0.45);
         border-radius: 14px;
-        padding: 10px 14px;
-        min-width: 120px;
+        padding: 14px 18px;
+        min-width: 150px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
       }
 
       .metric-card span {
         display: block;
-        font-size: 12px;
-        color: var(--muted);
+        font-size: 13px;
+        color: rgba(231, 234, 243, 0.7);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
       }
 
       .metric-card strong {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 700;
       }
 
@@ -259,18 +327,35 @@
   <body>
     <div class="page">
       <header>
-        <span class="pill">Qwen-Image</span>
-        <h1>Layered Decomposition Gallery</h1>
+        <section class="hero-title" aria-label="Section title">
+          <h2>Layered Decomposition Evaluation &amp; Visualization</h2>
+        </section>
         <p class="subtitle">
-          Selected four samples from the Qwen-Image layered decomposition
-          results. Click a thumbnail to inspect the input image (GT composite),
-          predicted composite, and each predicted layer.
+          Samples from the Qwen-Image layered decomposition results. Click a
+          thumbnail to inspect the input image (GT composite), predicted
+          composite, and each predicted layer.
         </p>
         <div class="meta-row">
           <div class="meta-chip">Metrics: rgb_l1 (lower is better)</div>
           <div class="meta-chip">Metrics: alpha_iou (higher is better)</div>
         </div>
       </header>
+
+
+
+      <section class="evaluation" aria-label="Evaluation summary">
+        <h2>Metric</h2>
+        <div class="evaluation-list">
+          <div class="evaluation-item">
+            <strong>rgb_l1</strong>
+            <span>Average RGB L1 error. Lower means closer color accuracy.</span>
+          </div>
+          <div class="evaluation-item">
+            <strong>alpha_iou</strong>
+            <span>Alpha overlap IoU. Higher means better shape alignment.</span>
+          </div>
+        </div>
+      </section>
 
       <section class="thumbs" id="thumbs" aria-label="Sample thumbnails"></section>
 
@@ -312,7 +397,6 @@
     <script>
       const sampleSeeds = [
         { id: "02b6AU0Yi3DWyl3hk2yE", layers: 6 },
-        { id: "012CNAoSwzpdocen8Tx8", layers: 5 },
         { id: "01NSB62JWCfNRDDItsKc", layers: 6 },
         { id: "02DfIs2HjSqICWtw6e1k", layers: 6 },
       ];
