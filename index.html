@@ -6,15 +6,16 @@
     <title>Layered Decomposition Gallery</title>
     <style>
       :root {
-        color-scheme: dark;
-        --bg: #0b0d12;
-        --card: #121621;
-        --card-soft: #161b28;
-        --border: #1f2635;
-        --text: #e7eaf3;
-        --muted: #9aa3b8;
-        --accent: #7aa7ff;
-        --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        color-scheme: light;
+        --bg: #f1f5ff;
+        --card: #ffffff;
+        --card-soft: #eef3fb;
+        --border: #d8e2f3;
+        --text: #1f2a3a;
+        --muted: #637083;
+        --accent: #5c7cff;
+        --shadow: 0 22px 48px rgba(30, 41, 59, 0.12);
+        --shadow-soft: 0 10px 24px rgba(30, 41, 59, 0.08);
       }
 
       * {
@@ -24,9 +25,9 @@
       body {
         margin: 0;
         font-family: "Inter", "Pretendard", "SF Pro Text", "Segoe UI", sans-serif;
-        background: radial-gradient(1200px 600px at 15% -10%, #1f2a44, transparent),
-          radial-gradient(1000px 600px at 90% -20%, #2b1b3a, transparent),
-          var(--bg);
+        background: radial-gradient(1100px 520px at 12% -10%, #dfeaff, transparent),
+          radial-gradient(900px 460px at 88% -18%, #f7eaff, transparent),
+          linear-gradient(180deg, #f8fbff 0%, #eef3ff 60%, #f7faff 100%);
         color: var(--text);
         min-height: 100vh;
       }
@@ -34,7 +35,7 @@
       .page {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 36px 20px 80px;
+        padding: 48px 24px 96px;
       }
 
       header {
@@ -68,6 +69,9 @@
         color: var(--muted);
         max-width: 720px;
         line-height: 1.6;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .meta-row {
@@ -90,8 +94,9 @@
         margin-top: 18px;
         background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 16px 18px;
+        border-radius: 20px;
+        padding: 18px 20px;
+        box-shadow: var(--shadow-soft);
       }
 
       .hero-title {
@@ -104,11 +109,8 @@
         font-size: clamp(22px, 3vw, 32px);
         font-weight: 700;
         letter-spacing: -0.01em;
-        background: linear-gradient(90deg, #7aa7ff 0%, #c8a3ff 45%, #ffb59a 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        text-shadow: 0 12px 30px rgba(122, 167, 255, 0.25);
+        color: var(--text);
+        text-shadow: none;
       }
 
       .evaluation h2 {
@@ -169,17 +171,19 @@
         flex-direction: column;
         gap: 10px;
         cursor: pointer;
+        box-shadow: var(--shadow-soft);
         transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
       }
 
       .thumb-card:hover {
         transform: translateY(-2px);
-        border-color: rgba(122, 167, 255, 0.6);
+        border-color: rgba(92, 124, 255, 0.6);
+        box-shadow: var(--shadow);
       }
 
       .thumb-card.active {
         border-color: var(--accent);
-        box-shadow: 0 0 0 1px rgba(122, 167, 255, 0.6), var(--shadow);
+        box-shadow: 0 0 0 1px rgba(92, 124, 255, 0.35), var(--shadow);
         transform: translateY(-2px);
       }
 
@@ -193,12 +197,12 @@
 
       .viewer {
         margin-top: 32px;
-        background: rgba(18, 22, 33, 0.8);
+        background: rgba(255, 255, 255, 0.92);
         border: 1px solid var(--border);
-        border-radius: 24px;
-        padding: 24px;
+        border-radius: 26px;
+        padding: 26px;
         box-shadow: var(--shadow);
-        backdrop-filter: blur(6px);
+        backdrop-filter: blur(8px);
       }
 
       .viewer-header {
@@ -211,66 +215,115 @@
 
       .viewer-title h2 {
         margin: 0;
-        font-size: 22px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
       }
 
+      .metrics-section {
+        margin-top: 32px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 18px 20px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .metrics-section h2 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
 
       .metrics {
         display: grid;
-        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
 
       .metric-card {
-        background: linear-gradient(145deg, rgba(122, 167, 255, 0.18), rgba(18, 22, 33, 0.9));
-        border: 1px solid rgba(122, 167, 255, 0.45);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 14px;
-        padding: 14px 18px;
+        padding: 14px 16px;
         min-width: 150px;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        box-shadow: var(--shadow-soft);
       }
 
       .metric-card span {
         display: block;
         font-size: 13px;
-        color: rgba(231, 234, 243, 0.7);
+        color: var(--muted);
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
 
       .metric-card strong {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
       }
 
-      .panels {
+      .viewer-content {
         margin-top: 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 18px;
+        grid-template-columns: minmax(320px, 1.1fr) minmax(320px, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .viewer.is-four-layer .viewer-content {
+        align-items: stretch;
+      }
+
+      .viewer.is-four-layer .panel-prediction img {
+        flex: 1;
+        height: 100%;
+        aspect-ratio: auto;
       }
 
       .panel {
         background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 18px;
+        border-radius: 22px;
         padding: 16px;
+        box-shadow: var(--shadow-soft);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
       }
 
       .panel h3 {
-        margin: 0 0 12px;
-        font-size: 15px;
+        margin: 0;
+        align-self: center;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 14px;
       }
 
       .panel img {
         width: 100%;
-        border-radius: 12px;
+        border-radius: 16px;
         background: var(--card-soft);
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
         display: block;
       }
 
       .layers-block {
-        margin-top: 24px;
+        margin-top: 0;
       }
 
       .layers-block h3 {
@@ -280,46 +333,57 @@
 
       .layers-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
       }
 
       .layer-card {
         background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 10px;
+        border-radius: 16px;
+        padding: 6px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
+        box-shadow: var(--shadow-soft);
       }
 
       .layer-card img {
         width: 100%;
         border-radius: 10px;
-        background-color: #111522;
-        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
-          linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%),
-          linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.08) 75%);
+        background-color: #edf2fb;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.65) 25%, transparent 25%),
+          linear-gradient(-45deg, rgba(255, 255, 255, 0.65) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.65) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.65) 75%);
         background-size: 16px 16px;
         background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
         display: block;
       }
 
       .layer-label {
-        font-size: 12px;
+        font-size: 11px;
         color: var(--muted);
+        text-align: center;
       }
 
       @media (max-width: 720px) {
         .metrics {
-          grid-auto-flow: row;
-          width: 100%;
+          grid-template-columns: 1fr;
         }
 
         .metric-card {
           width: 100%;
+        }
+
+        .viewer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .layers-grid {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
         }
       }
     </style>
@@ -331,13 +395,63 @@
           <h2>Layered Decomposition Evaluation &amp; Visualization</h2>
         </section>
         <p class="subtitle">
-          Samples from the Qwen-Image layered decomposition results. Click a
-          thumbnail to inspect the input image (GT composite), predicted
-          composite, and each predicted layer.
+          Click a
+          thumbnail to inspect the predicted composite and each predicted layer.
         </p>
       </header>
 
 
+
+      <section class="thumbs" id="thumbs" aria-label="Sample thumbnails"></section>
+
+      <section class="metrics-section" aria-label="Sample metrics">
+        <h2>Sample Metrics</h2>
+        <div class="metrics">
+          <div class="metric-card">
+            <span>rgb_l1</span>
+            <strong id="metric-rgb">0.0000</strong>
+          </div>
+          <div class="metric-card">
+            <span>alpha_iou</span>
+            <strong id="metric-alpha">0.0000</strong>
+          </div>
+          <div class="metric-card">
+            <span>lpips</span>
+            <strong id="metric-lpips">0.0000</strong>
+          </div>
+          <div class="metric-card">
+            <span>psnr</span>
+            <strong id="metric-psnr">0.0000</strong>
+          </div>
+          <div class="metric-card">
+            <span>clip_score</span>
+            <strong id="metric-clip">0.0000</strong>
+          </div>
+          <div class="metric-card">
+            <span>ssim</span>
+            <strong id="metric-ssim">0.0000</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="viewer">
+        <div class="viewer-header">
+          <div class="viewer-title">
+            <h2 id="sample-title">Selected Sample</h2>
+          </div>
+        </div>
+
+        <div class="viewer-content">
+          <div class="panel panel-prediction">
+            <h3>Prediction (Composite)</h3>
+            <img id="pred-image" alt="Predicted composite" />
+          </div>
+          <div class="panel layers-block">
+            <h3>Predicted Layers</h3>
+            <div class="layers-grid" id="layers-grid"></div>
+          </div>
+        </div>
+      </section>
 
       <section class="evaluation" aria-label="Evaluation summary">
         <h2>Metric</h2>
@@ -350,59 +464,46 @@
             <strong>alpha_iou</strong>
             <span>Alpha overlap IoU. Higher means better shape alignment.</span>
           </div>
-        </div>
-      </section>
-
-      <section class="thumbs" id="thumbs" aria-label="Sample thumbnails"></section>
-
-      <section class="viewer">
-        <div class="viewer-header">
-          <div class="viewer-title">
-            <h2 id="sample-title">Selected Sample</h2>
+          <div class="evaluation-item">
+            <strong>lpips</strong>
+            <span>Perceptual similarity (LPIPS). Lower means closer perception.</span>
           </div>
-          <div class="metrics">
-            <div class="metric-card">
-              <span>rgb_l1</span>
-              <strong id="metric-rgb">0.0000</strong>
-            </div>
-            <div class="metric-card">
-              <span>alpha_iou</span>
-              <strong id="metric-alpha">0.0000</strong>
-            </div>
+          <div class="evaluation-item">
+            <strong>psnr</strong>
+            <span>Peak signal-to-noise ratio. Higher means better reconstruction.</span>
           </div>
-        </div>
-
-        <div class="panels">
-          <div class="panel">
-            <h3>Input (GT Composite)</h3>
-            <img id="gt-image" alt="Ground truth composite" />
+          <div class="evaluation-item">
+            <strong>clip_score</strong>
+            <span>CLIP similarity score. Higher means better semantic alignment.</span>
           </div>
-          <div class="panel">
-            <h3>Prediction (Composite)</h3>
-            <img id="pred-image" alt="Predicted composite" />
+          <div class="evaluation-item">
+            <strong>ssim</strong>
+            <span>Structural similarity index. Higher means closer structure.</span>
           </div>
-        </div>
-
-        <div class="layers-block">
-          <h3>Predicted Layers</h3>
-          <div class="layers-grid" id="layers-grid"></div>
         </div>
       </section>
     </div>
 
     <script>
       const sampleSeeds = [
-        { id: "02b6AU0Yi3DWyl3hk2yE", layers: 6 },
+        { id: "aP2kh7XG0cpmna2NS8Fn", layers: 4 },
+        { id: "00xBjHzejgYYHH0aank4", layers: 4 },
+        { id: "01FxcJvAI0Pax6cjDJEr", layers: 4 },
         { id: "01NSB62JWCfNRDDItsKc", layers: 6 },
+        { id: "02b6AU0Yi3DWyl3hk2yE", layers: 6 },
         { id: "02DfIs2HjSqICWtw6e1k", layers: 6 },
       ];
       let samples = [];
 
       const thumbsEl = document.getElementById("thumbs");
+      const viewerEl = document.querySelector(".viewer");
       const titleEl = document.getElementById("sample-title");
       const rgbEl = document.getElementById("metric-rgb");
       const alphaEl = document.getElementById("metric-alpha");
-      const gtEl = document.getElementById("gt-image");
+      const lpipsEl = document.getElementById("metric-lpips");
+      const psnrEl = document.getElementById("metric-psnr");
+      const clipEl = document.getElementById("metric-clip");
+      const ssimEl = document.getElementById("metric-ssim");
       const predEl = document.getElementById("pred-image");
       const layersEl = document.getElementById("layers-grid");
 
@@ -429,16 +530,47 @@
         };
       };
 
+      const buildQualityMetricsMap = (metricsData) => {
+        const map = {};
+        const rows = metricsData?.rows;
+        if (!Array.isArray(rows)) {
+          return map;
+        }
+        rows.forEach((row) => {
+          if (row?.id) {
+            map[row.id] = row;
+          }
+        });
+        return map;
+      };
+
+      const resolveQualityMetrics = (metricsMap, id) => {
+        const entry = metricsMap?.[id];
+        if (!entry) {
+          return { lpips: null, psnr: null, clip_score: null, ssim: null };
+        }
+        return {
+          lpips: entry.lpips ?? null,
+          psnr: entry.psnr ?? null,
+          clip_score: entry.clip_score ?? null,
+          ssim: entry.ssim ?? null,
+        };
+      };
+
+      const buildLayerCard = (src, index) => {
+        const card = document.createElement("div");
+        card.className = "layer-card";
+        card.innerHTML = `
+          <img src="${src}" alt="Layer ${index + 1}" loading="lazy" />
+          <div class="layer-label">Layer ${index + 1}</div>
+        `;
+        return card;
+      };
+
       const renderLayers = (paths) => {
         layersEl.innerHTML = "";
         paths.forEach((src, index) => {
-          const card = document.createElement("div");
-          card.className = "layer-card";
-          card.innerHTML = `
-            <img src="${src}" alt="Layer ${index + 1}" loading="lazy" />
-            <div class="layer-label">Layer ${index + 1}</div>
-          `;
-          layersEl.appendChild(card);
+          layersEl.appendChild(buildLayerCard(src, index));
         });
       };
 
@@ -449,16 +581,21 @@
           card.setAttribute("aria-pressed", idx === index ? "true" : "false");
         });
 
+        viewerEl.classList.toggle("is-four-layer", sample.layers === 4);
         titleEl.textContent = "Selected Sample";
         rgbEl.textContent = formatMetric(sample.metrics.rgb_l1);
         alphaEl.textContent = formatMetric(sample.metrics.alpha_iou);
-        gtEl.src = `gt/${sample.id}/composite.png`;
+        lpipsEl.textContent = formatMetric(sample.metrics.lpips);
+        psnrEl.textContent = formatMetric(sample.metrics.psnr);
+        clipEl.textContent = formatMetric(sample.metrics.clip_score);
+        ssimEl.textContent = formatMetric(sample.metrics.ssim);
         predEl.src = `pred/${sample.id}/composite.png`;
         renderLayers(buildLayerPaths(sample.id, sample.layers));
       };
 
       const init = async () => {
         let metricsMap = {};
+        let qualityMetricsMap = {};
         try {
           const response = await fetch("metrics.json", { cache: "no-store" });
           if (response.ok) {
@@ -468,9 +605,22 @@
           metricsMap = {};
         }
 
+        try {
+          const response = await fetch("metrics2.json", { cache: "no-store" });
+          if (response.ok) {
+            const metricsData = await response.json();
+            qualityMetricsMap = buildQualityMetricsMap(metricsData);
+          }
+        } catch (error) {
+          qualityMetricsMap = {};
+        }
+
         samples = sampleSeeds.map((seed) => ({
           ...seed,
-          metrics: resolveMetrics(metricsMap, seed.id),
+          metrics: {
+            ...resolveMetrics(metricsMap, seed.id),
+            ...resolveQualityMetrics(qualityMetricsMap, seed.id),
+          },
         }));
 
         thumbsEl.innerHTML = "";
