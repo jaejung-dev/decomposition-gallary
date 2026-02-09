@@ -288,6 +288,12 @@
         aspect-ratio: auto;
       }
 
+      .viewer.square-pred .panel-prediction img {
+        flex: 0 0 auto;
+        height: auto;
+        aspect-ratio: 1 / 1;
+      }
+
       .panel {
         background: var(--card);
         border: 1px solid var(--border);
@@ -515,6 +521,8 @@
       const buildLayerPaths = (id, count) =>
         Array.from({ length: count }, (_, i) => `pred/${id}/layer_${i}.png`);
 
+      const squarePredIds = new Set(["00xBjHzejgYYHH0aank4"]);
+
       const resolveMetrics = (metricsMap, id) => {
         const entries = metricsMap?.[id];
         if (!Array.isArray(entries) || entries.length === 0) {
@@ -582,6 +590,7 @@
         });
 
         viewerEl.classList.toggle("is-four-layer", sample.layers === 4);
+        viewerEl.classList.toggle("square-pred", squarePredIds.has(sample.id));
         titleEl.textContent = "Selected Sample";
         rgbEl.textContent = formatMetric(sample.metrics.rgb_l1);
         alphaEl.textContent = formatMetric(sample.metrics.alpha_iou);
